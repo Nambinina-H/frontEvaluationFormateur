@@ -51,7 +51,6 @@ export const getOneRequest = (url,id) => {
     };
     return axios.get(
         `${BASE_URI}${url}/${id}`,
-        // `${BASE_URI}Get_One_Vehicle/65158b8d1002865d7221e4bb/650d480053fc3825cc3151a5`,
         options
     );
 }
