@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Webcam from 'react-webcam';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,10 @@ const Registration = () => {
     role: '',
   });
 
+  const [useWebcam, setUseWebcam] = useState(false); // État pour basculer entre l'upload de fichier et la webcam
+  const webcamRef = useRef(null);
+  const [capturedPhoto, setCapturedPhoto] = useState(null);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -33,12 +38,30 @@ const Registration = () => {
     });
   };
 
+  // Fonction pour convertir une image base64 en Blob
+  const base64ToBlob = (base64) => {
+    const byteString = atob(base64.split(',')[1]);
+    const mimeString = base64.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
     for (const key in formData) {
-      formDataToSend.append(key, formData[key]);
+      // Si l'image est en base64 (capturée par webcam), on la convertit en Blob
+      if (key === 'photo' && typeof formData[key] === 'string' && formData[key].startsWith('data:image')) {
+        const photoBlob = base64ToBlob(formData[key]);
+        formDataToSend.append('photo', photoBlob, 'photo.jpg'); // On nomme l'image "photo.jpg"
+      } else {
+        formDataToSend.append(key, formData[key]);
+      }
     }
 
     try {
@@ -56,9 +79,17 @@ const Registration = () => {
       console.log('User created:', data);
     } catch (error) {
       console.error('Erreur lors de la création de l’utilisateur:', error);
-      console.log('xxx',formData);
     }
   };
+
+  const capturePhoto = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setCapturedPhoto(imageSrc); // Enregistre l'image capturée pour l'afficher
+    setFormData({
+      ...formData,
+      photo: imageSrc, // Convertir en Blob ou base64 selon les besoins plus tard
+    });
+};
   
 
   return (
@@ -134,12 +165,68 @@ const Registration = () => {
                               <div class="invalid-feedback">Please, enter your name!</div>
                             </div>
 
-                            <div class="col-12">
+                            {/* <div class="col-12">
                               <label for="photo" class="form-label">Image</label>
                               <input class="form-control" type="file" name="photo" onChange={handleFileChange} id="photo"/>
+                            </div> */}
+
+                                {/* Sélecteur pour choisir entre fichier ou webcam */}
+                            <div className="col-12">
+                              <label className="form-label">Authentification faciale</label>
+                              <div className="form-check">
+                                <input
+                                  className="form-check-input"
+                                  type="radio"
+                                  name="photoOption"
+                                  value="upload"
+                                  onChange={() => setUseWebcam(false)}
+                                  checked={!useWebcam}
+                                />
+                                <label className="form-check-label">Télécharger une photo</label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  className="form-check-input"
+                                  type="radio"
+                                  name="photoOption"
+                                  value="webcam"
+                                  onChange={() => setUseWebcam(true)}
+                                />
+                                <label className="form-check-label">Utiliser la webcam</label>
+                              </div>
                             </div>
 
-
+                            {/* Si l'utilisateur choisit d'utiliser la webcam */}
+                            {useWebcam ? (
+                              <div className="col-12">
+                                <Webcam
+                                  audio={false}
+                                  ref={webcamRef}
+                                  screenshotFormat="image/jpeg"
+                                  className="webcam"
+                                  style={{ width: '100%', height: 'auto' }} // Ajuste la webcam à la largeur du formulaire
+                                />
+                                <button type="button" className="btn btn-secondary mt-2" onClick={capturePhoto}>
+                                  Prendre une photo
+                                </button>
+                                
+                                {/* Affichage de l'image capturée */}
+                                {capturedPhoto && (
+                                  <div className="mt-3">
+                                    <img
+                                      src={capturedPhoto}
+                                      alt="Captured"
+                                      style={{ width: '100%', height: 'auto' }} // Ajuste l'image capturée à la largeur du formulaire
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            ) : (
+                              <div className="col-12">
+                                <label htmlFor="photo" className="form-label">Télécharger une photo</label>
+                                <input className="form-control" type="file" name="photo" onChange={handleFileChange} id="photo" />
+                              </div>
+                            )}
 
                             {/* {formData.type === 'etudiant' && (
                               <div class="col-12">
@@ -164,14 +251,14 @@ const Registration = () => {
                               </div>
                             )}
 
-                            <div class="col-12">
+                            {/* <div class="col-12">
                               <div class="form-check">
                                 <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required/>
                                 <label class="form-check-label" for="acceptTerms">J'accepte <a href="#">les termes et conditions</a></label>
                                 <div class="invalid-feedback">You must agree before submitting.</div>
                               </div>
-                            </div>
-                            <div class="col-12">
+                            </div> */}
+                            <div class="col-12 pt-2">
                               <button class="btn btn-primary w-100" type="submit">Créer</button>
                             </div>
                             <div class="col-12 text-center">
