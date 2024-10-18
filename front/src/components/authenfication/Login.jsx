@@ -28,15 +28,15 @@ const Login = () => {
 
                     <div class="d-flex justify-content-center pt-4 pb-4">
                       <div class="px-2">
-                        <button class="btn btn-primary btn-lg"><i class="bi bi-person-bounding-box"></i><br/>Faciale</button>
+                        <Link to="/loginFaciale"><button class="btn btn-primary btn-lg"><i class="bi bi-person-bounding-box"></i><br/>Faciale</button></Link>
                       </div>
                       <div class="px-2">
-                        <button class="btn btn-primary btn-lg"><i class="bi bi-qr-code-scan"></i><br/>QrCode</button>
+                        <Link to="/loginQrCode"><button class="btn btn-primary btn-lg"><i class="bi bi-qr-code-scan"></i><br/>QrCode</button></Link>
                       </div>
                     </div>
 
                     <div class="pt-2 col-12 text-center">
-                      <p class="small mb-0">Pas encore de compte ? <Link to="/registration">Créer un compte</Link> </p>
+                      <p class="small mb-0">Pas encore de compte ? <Link to="/registration">Créer un compte</Link></p>
                     </div>
 
                     </div>
