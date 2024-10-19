@@ -49,7 +49,7 @@ const Header = () => {
                 </a>
                 {/* <!-- End Notification Icon --> */}
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications dropdown-content">
                 <li class="dropdown-header">
                     4 nouveaux notifications
                     {/* <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Voir tout</span></a> */}
@@ -61,9 +61,9 @@ const Header = () => {
                 <li class="notification-item">
                     <i class="bi bi-exclamation-circle text-warning"></i>
                     <div>
-                    <h4>Lorem Ipsum</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>30 min. ago</p>
+                    <h4>Nouveau retour sur votre évaluation</h4>
+                    <p>Un formateur a répondu à votre évaluation. Consultez les commentaires.</p>
+                    <p>Il y a 30 min.</p>
                     </div>
                 </li>
 
@@ -74,9 +74,9 @@ const Header = () => {
                 <li class="notification-item">
                     <i class="bi bi-x-circle text-danger"></i>
                     <div>
-                    <h4>Atque rerum nesciunt</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>1 hr. ago</p>
+                    <h4>Évaluation à remplir</h4>
+                    <p>Vous avez une évaluation en attente pour un formateur. N'oubliez pas de la compléter !</p>
+                    <p>Il y a 1 h.</p>
                     </div>
                 </li>
 
@@ -87,9 +87,9 @@ const Header = () => {
                 <li class="notification-item">
                     <i class="bi bi-check-circle text-success"></i>
                     <div>
-                    <h4>Sit rerum fuga</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>2 hrs. ago</p>
+                    <h4>Mise à jour de la plateforme</h4>
+                    <p>Des nouvelles fonctionnalités ont été ajoutées pour faciliter l'évaluation des formateurs.</p>
+                    <p>Il y a 2 h.</p>
                     </div>
                 </li>
 
@@ -110,7 +110,7 @@ const Header = () => {
                     <hr class="dropdown-divider"/>
                 </li> */}
                 <li class="dropdown-footer">
-                    <a href="#">Voir tout les notifications</a>
+                    <a href="#">Voir tout</a>
                 </li>
 
                 </ul>
@@ -179,7 +179,7 @@ const Header = () => {
                 </li>
 
                 <li class="dropdown-footer">
-                    <a href="#">Voir tout les messages</a>
+                    <a href="#">Voir tout</a>
                 </li>
 
                 </ul>

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import EnMaintenance from '../assets/EnMaintenance';
 
 const LoginQrCode = () => {
   
 
   return (
         <div>
-            <p>LoginQrCode</p>
+            <EnMaintenance/>
         </div>
   );
 };
