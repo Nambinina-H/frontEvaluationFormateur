@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';  // Importez useNavigate pour la redirection
-import ClipLoader from 'react-spinners/ClipLoader'; // Importer le spinner
+import FadeLoader from 'react-spinners/FadeLoader'; // Importer le spinner
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  // Importer les styles de Toastify
 
@@ -129,7 +129,7 @@ const LoginFaciale = () => {
                       />
                     )}
                     
-                    {isLoading && <ClipLoader size={50} color={"#37A2A1"} />} {/* Affiche le spinner de chargement */}
+                    {isLoading && <FadeLoader size={50} color={"#646cffaa"} />} {/* Affiche le spinner de chargement */}
                     
                     {authResult === 'Échec de l\'authentification. Veuillez réessayer.' && <p>{authResult}</p>}
 
