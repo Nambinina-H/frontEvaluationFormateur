@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';  // Importez useNavigate pour la redirection
 import ClipLoader from 'react-spinners/ClipLoader'; // Importer le spinner
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';  // Importer les styles de Toastify
+
 
 const LoginFaciale = () => {
   const [image, setImage] = useState(null);
@@ -52,15 +55,26 @@ const LoginFaciale = () => {
       if (data.user_info) {
         setUserInfo(data.user_info);  // Stocke les informations de l'utilisateur
         setAuthResult(data.message);  // Affiche le message d'authentification réussie
-        
-        // Rediriger vers la page dashboard après 2 secondes
-        setTimeout(() => {
-          navigate('/login');  // Redirige vers la page "dashboard"
-        }, 2000);
-      
-      } else {
+    
+        // Afficher une notification de succès
+        toast.success("Authentification réussie", {
+          position: "top-center",
+          autoClose: 3000,  // Fermeture automatique après 3 secondes
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+    
+        // Rediriger vers la page dashboard après 2 secondes (optionnel)
+        // setTimeout(() => {
+        //   navigate('/login');  // Redirige vers la page "dashboard"
+        // }, 2000);
+    } else {
         setAuthResult(data.message);  // Affiche le message d'échec d'authentification
-      }
+    }
+    
     } catch (error) {
       setAuthResult('Échec de l\'authentification. Veuillez réessayer.');
     } finally {
@@ -104,7 +118,7 @@ const LoginFaciale = () => {
                     <h5 className="card-title text-center pb-0 fs-4">S'authentifier</h5>
                   </div> */}
 
-                  <div className="d-flex justify-content-center pt-4 pb-4" style={{ width: '100%', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div className="d-flex justify-content-center pt-4 pb-4" style={{ width: '100%', height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {isWebcamVisible && (
                       <Webcam
                         audio={false}
@@ -117,12 +131,12 @@ const LoginFaciale = () => {
                     
                     {isLoading && <ClipLoader size={50} color={"#37A2A1"} />} {/* Affiche le spinner de chargement */}
                     
-                    {authResult && <p>{authResult}</p>}
-                    
+                    {authResult === 'Échec de l\'authentification. Veuillez réessayer.' && <p>{authResult}</p>}
+
                     {/* Affichage des informations de l'utilisateur authentifié */}
                     {userInfo && (
                       <div>
-                        <h2>Informations de l'utilisateur :</h2>
+                        {/* <h2>Informations de l'utilisateur :</h2> */}
                         <p>Email : {userInfo.email}</p>
                         <p>Nom : {userInfo.nom}</p>
                         <p>Prénom : {userInfo.prenom}</p>
@@ -151,6 +165,7 @@ const LoginFaciale = () => {
           </div>
         </div>
       </section>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,11 +1,15 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Assurez-vous que Bootstrap est importé
 import { Link } from 'react-router-dom';
+import Header from '../dashboard/Header';
+import SideBar from '../dashboard/SideBar';
 
 const Login = () => {
   return (
     <>
       <main>
+      <Header/>
+      {/* <SideBar/> */}
         <div class="container">
           <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">

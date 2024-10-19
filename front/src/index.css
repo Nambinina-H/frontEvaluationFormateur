@@ -1231,3 +1231,14 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+/*--------------------------------------------------------------
+# SideBar
+--------------------------------------------------------------*/
+
+.sidebar {
+  display: none; /* Masquer par défaut */
+}
+
+.sidebar.active {
+  display: block; /* Afficher lorsque active */
+}
