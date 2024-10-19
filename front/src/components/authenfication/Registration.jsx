@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Webcam from 'react-webcam';
-import Footer from '../assets/footer';
+import Footer from '../assets/Footer';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
