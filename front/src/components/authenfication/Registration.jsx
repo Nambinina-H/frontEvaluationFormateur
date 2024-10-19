@@ -224,7 +224,6 @@ const Registration = () => {
                               </div>
                             ) : (
                               <div className="col-12">
-                                <label htmlFor="photo" className="form-label">Télécharger une photo</label>
                                 <input className="form-control" type="file" name="photo" onChange={handleFileChange} id="photo" />
                               </div>
                             )}
