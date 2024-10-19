@@ -97,7 +97,7 @@ const Header = () => {
                     <hr class="dropdown-divider"/>
                 </li>
 
-                <li class="notification-item">
+                {/* <li class="notification-item">
                     <i class="bi bi-info-circle text-primary"></i>
                     <div>
                     <h4>Dicta reprehenderit</h4>
@@ -108,7 +108,7 @@ const Header = () => {
 
                 <li>
                     <hr class="dropdown-divider"/>
-                </li>
+                </li> */}
                 <li class="dropdown-footer">
                     <a href="#">Voir tout les notifications</a>
                 </li>
