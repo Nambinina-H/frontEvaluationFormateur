@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Webcam from 'react-webcam';
+import Footer from '../assets/footer';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -268,10 +269,7 @@ const Registration = () => {
 
                         </div>
                       </div>
-
-                      <div class="credits">
-                        Conçu par <a href="https://bootstrapmade.com/">Team LaVilla</a>
-                      </div>
+                      <Footer/>
                     </div>
                   </div>
                 </div>

@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+// Footer.js
+import React from 'react';
 
 const Footer = () => {
-  
-
   return (
-        <>
-            <footer id="footer" class="footer">
-                <div class="copyright">
-                &copy; Copyright <strong><span>Evaluation - Formateur</span></strong>. Tous droits réservés
-                </div>
-                <div class="credits">
-                Conçu par BootstrapMade <a href="https://bootstrapmade.com/">Team LaVilla</a>
-                </div>
-            </footer>
-        </>
+    <>
+      <footer className="footer">
+        Conçu par <a href="#">LaVilla</a>
+      </footer>
+    </>
   );
 };
 

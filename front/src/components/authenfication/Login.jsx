@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Assurez-vous que Bootstrap est
 import { Link } from 'react-router-dom';
 import Header from '../dashboard/Header';
 import SideBar from '../dashboard/SideBar';
+import Footer from '../assets/footer';
 
 const Login = () => {
   return (
@@ -46,10 +47,7 @@ const Login = () => {
                     </div>
 
                   </div>
-
-                  <div class="credits">
-                    Conçu par <a href="https://bootstrapmade.com/">LaVilla</a>
-                  </div>
+                  <Footer/>
                 </div>
               </div>
             </div>
