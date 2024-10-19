@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';  // Importez useNavigate pour la
 import FadeLoader from 'react-spinners/FadeLoader'; // Importer le spinner
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  // Importer les styles de Toastify
+import Footer from '../assets/Footer';
 
 
 const LoginFaciale = () => {
@@ -47,7 +48,7 @@ const LoginFaciale = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Échec de l\'authentification');
+        throw new Error('Échec de l\'authentification !');
       }
 
       const data = await response.json();
@@ -76,7 +77,7 @@ const LoginFaciale = () => {
     }
     
     } catch (error) {
-      setAuthResult('Échec de l\'authentification. Veuillez réessayer.');
+      setAuthResult('Échec de l\'authentification !');
     } finally {
       setIsLoading(false); // Arrête le chargement
     }
@@ -131,7 +132,15 @@ const LoginFaciale = () => {
                     
                     {isLoading && <FadeLoader size={50} color={"#646cffaa"} />} {/* Affiche le spinner de chargement */}
                     
-                    {authResult === 'Échec de l\'authentification. Veuillez réessayer.' && <p>{authResult}</p>}
+                    {authResult === 'Échec de l\'authentification !' && 
+                    
+                    <div className="text-center">
+                      <p>{authResult}</p>
+                      <button onClick={resetAuth} className="btn btn-primary">
+                        Réessayer
+                      </button>
+                    </div>
+                    }
 
                     {/* Affichage des informations de l'utilisateur authentifié */}
                     {userInfo && (
@@ -147,20 +156,11 @@ const LoginFaciale = () => {
                     )}
                   </div>
 
-                  {/* Bouton de réinitialisation centré */}
-                  {!userInfo && !isLoading && authResult && (
-                    <div className="text-center">
-                      <button onClick={resetAuth} className="btn btn-primary">
-                        Réessayer
-                      </button>
-                    </div>
-                  )}
+                  
                 </div>
               </div>
 
-              <div className="credits">
-                Conçu par <a href="https://bootstrapmade.com/">LaVilla</a>
-              </div>
+              <Footer/>
             </div>
           </div>
         </div>
