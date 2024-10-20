@@ -133,13 +133,13 @@ const Registration = () => {
                               <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-6">
                               <label for="name" class="form-label">Nom</label>
                               <input type="text" name="nom" value={formData.nom} onChange={handleInputChange} class="form-control" id="nom" required/>
                               <div class="invalid-feedback">Please, enter your name!</div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-6">
                               <label for="prenom" class="form-label">Prénom</label>
                               <input type="text" name="prenom" value={formData.prenom} onChange={handleInputChange} class="form-control" id="prenom" required/>
                               <div class="invalid-feedback">Please, enter your name!</div>
